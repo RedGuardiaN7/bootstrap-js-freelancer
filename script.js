@@ -8,7 +8,8 @@
 
 //Creazione funzione principale che, attivata al click del bottone apposito, calcola il prezzo della commissione, con eventuali deduzioni ad esso per via dei codici sconto
 
-function PrintPrice() {
+function submitForm(event) {
+    event.preventDefault();
 
     //Trasformazione dell'input dell'utente in variabile
 
@@ -19,7 +20,7 @@ function PrintPrice() {
 
     hours = hours.replace(",", ".");
 
-    //Controllo input dell'utente, nel caso in cui il valore inserito non sia un numero, o sia minore di 1, viene dato errore
+    //Controllo input dell'utente. Nel caso in cui il valore inserito non sia un numero, o sia minore di 1, viene dato errore
 
     if (isNaN(hours) || hours < 1) {
         console.error("Valore delle ore invalido!");
@@ -30,31 +31,38 @@ function PrintPrice() {
     hours = Math.round(hours);
 
     //Grazie alla funzione full_price si ottiene il primo prezzo (senza sconti) in base alle ore e al tipo di lavoro richiesto
-    
-    let first_price = full_price (hours);
 
-    let final_price = discount (first_price);
+    let first_price = full_price(hours);
 
-    console.log(final_price)
+    //Utilizzando la funzione discount invece, è possibile ottenere il prezzo finale con l'applicazione di eventuali sconti
+
+    let final_price = discount(first_price);
+
+    //Ora è possibile comunicare all'utente il prezzo finale della commissione
+
+    document.getElementById("price_output").innerHTML = "Il prezzo finale è di: " + final_price + "€";
+
+    console.log("Il prezzo finale è di: " + final_price + "€");
 }
 
 
+// -------------DICHIARAZIONE DELLE FUNZIONI------------- //
 
 
-//Creazione funzione che, leggendo la scelta dell'utente riguardando il tipo di lavoro insieme al numero di ore richieste(hrs), calcola il primo prezzo della commissione (senza sconti)
+//Creazione funzione che, leggendo la scelta dell'utente riguardante il tipo di lavoro insieme al numero di ore richieste(hrs), calcola il prezzo pieno della commissione (senza sconti)
 
-function full_price (hrs) {
+function full_price(hrs) {
 
-    //Lettura del form riguardante il tipo di lavoro richiesto
+    //Lettura del form riguardante il tipo di lavoro richiesto (value 1,2 o 3)
 
     let type_of_work = document.getElementById("type_of_work").value
 
-    if (type_of_work == 1) {                    
-        return 15.30 * hrs;                 // Se la commissione riguarda lo sviluppo frontend (1) il prezzo orario è di 15.30 € l’ora
+    if (type_of_work == 1) {
+        return 15.30 * hrs;                 // Se la commissione riguarda lo sviluppo frontend (value = 1) il prezzo orario è di 15.30 € l’ora
     } else if (type_of_work == 2) {
-        return 20.50 * hrs;                 // Se la commissione riguarda lo sviluppo backend (2) il prezzo orario è di 20.50 € l’ora
+        return 20.50 * hrs;                 // Se la commissione riguarda lo sviluppo backend (value = 2) il prezzo orario è di 20.50 € l’ora
     } else if (type_of_work == 3) {
-        return 33.60 * hrs;                 // Se la commissione riguarda l’analisi progettuale (3) di un progetto il prezzo orario è di 33.60 € l'ora
+        return 33.60 * hrs;                 // Se la commissione riguarda l’analisi progettuale (value = 3) di un progetto il prezzo orario è di 33.60 € l'ora
     }
 }
 
@@ -65,19 +73,21 @@ let discount_codes = ["YHDNU32", "JANJC63", "PWKCN25", "SJDPO96", "POCIE24"];
 
 //Creazione funzione che calcola il prezzo finale della commissione (applicando eventuali sconti)
 
-function discount (price) {
+function discount(price) {
 
     //Lettura dell'input dell'utente e trasformazione in variabile
 
     let input = document.getElementById("formDiscountInput").value;
 
-    input = input.toUpperCase();            // Si trasforma l'input dell'utente in un codice in maiuscolo per verificare se il codice inserito è presente tra quelli consentiti
+    // Si trasforma l'input dell'utente in un codice in maiuscolo per verificare se il codice inserito è presente tra quelli accettati (i quali sono in maiuscolo)
+    
+    input = input.toUpperCase();
 
     if (discount_codes.includes(input)) {                       //Se il codice inserito dall'utente è presente tra quelli accettati, viene applicato il 25% di sconto
-        console.log("Codice sconto applicato! (-25%)");             
+        console.log("Codice sconto applicato! (-25%)");
         return price - 0.25 * price;
     } else {
-        console.log("Codice sconto non inserito/invalido.");    
+        console.log("Codice sconto non inserito/invalido.");
         return price;                                           //Altrimenti, non applicando alcun sconto, il prezzo finale equivale al prezzo iniziale
     }
 }

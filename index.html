@@ -127,81 +127,82 @@
         <div class="row justify-content-center mt-5">
             <div class="col 12 col-lg-10 bg-info p-0">
                 <p class="fw-semibold fs-4 text-center mt-3">WANT AN OFFER?</p>
-                <div class="row row-cols-1 row-cols-sm-2 mx-2 mx-md-5 px-2 px-md-5">
-                    
-                    <div class="col mb-3">
+                <form id="commission_form" onsubmit="submitForm(event)">
+                    <div class="row row-cols-1 row-cols-sm-2 mx-2 mx-md-5 px-2 px-md-5">
 
-                        <label for="formFirstNameInput" class="form-label"><small>First name</small></label>
-                        <input type="text" class="form-control form-control-sm" id="formFirstNameInput"
-                            placeholder="Type your first name here...">
+                        <div class="col mb-3">
+
+                            <label for="formFirstNameInput" class="form-label"><small>First name</small></label>
+                            <input type="text" class="form-control form-control-sm" id="formFirstNameInput"
+                                placeholder="Type your first name here...">
+
+                        </div>
+
+                        <div class="col mb-3">
+
+                            <label for="formLastNameInput" class="form-label"><small>Last name</small></label>
+                            <input type="text" class="form-control form-control-sm" id="formLastNameInput"
+                                placeholder="Type your last name here...">
+
+                        </div>
+
+                        <div class="col mb-3">
+
+                            <label for="formEmailInput" class="form-label"><small>Email address</small></label>
+                            <input type="text" class="form-control form-control-sm" id="formEmailInput"
+                                placeholder="Type your email address here...">
+
+                        </div>
+
+                        <div class="col mb-3">
+
+                            <label for="formHoursInput" class="form-label"><small>Hours requested</small></label>
+                            <input type="text" class="form-control form-control-sm" id="formHoursInput"
+                                placeholder="How many hours of work do you require?">
+
+                        </div>
+
+                        <div class="col mb-3">
+
+                            <label class="form-label"><small>Type of work</small></label>
+                            <select id="type_of_work" class="form-select form-select-sm" aria-label=".form-work-select">
+                                <option selected disabled>What type of work do you require?</option>
+                                <option value="1">Frontend Development</option>
+                                <option value="2">Backend Development</option>
+                                <option value="3">Project Analysis</option>
+                            </select>
+
+                        </div>
+
+                        <div class="col mb-3">
+
+                            <label for="formDiscountInput" class="form-label"><small>Discount Code</small></label>
+                            <input type="text" class="form-control form-control-sm" id="formDiscountInput"
+                                placeholder="Type your discount code here...">
+
+                        </div>
+
+
 
                     </div>
 
-                    <div class="col mb-3">
+                    <div class="row mx-2 mx-md-5 px-2 px-md-5">
 
-                        <label for="formLastNameInput" class="form-label"><small>Last name</small></label>
-                        <input type="text" class="form-control form-control-sm" id="formLastNameInput"
-                            placeholder="Type your last name here...">
+                        <div class=" col-12 mb-3">
 
-                    </div>
+                            <label for="FormMessage" class="form-label"><small>Message</small></label>
+                            <textarea id="FormMessage" class="form-control form-control-sm" rows="3"
+                                placeholder="Type your message here..."></textarea>
+                        </div>
 
-                    <div class="col mb-3">
+                        <div class="col-12 mb-3 text-center">
+                            <button type="submit" class="btn btn-warning">Send</button>
+                        </div>
 
-                        <label for="formEmailInput" class="form-label"><small>Email address</small></label>
-                        <input type="text" class="form-control form-control-sm" id="formEmailInput"
-                            placeholder="Type your email address here...">
-
-                    </div>
-
-                    <div class="col mb-3">
-
-                        <label for="formHoursInput" class="form-label"><small>Hours requested</small></label>
-                        <input type="text" class="form-control form-control-sm" id="formHoursInput"
-                            placeholder="How many hours of work do you require?">
-
-                    </div>
-
-                    <div class="col mb-3">
-
-                        <label class="form-label"><small>Type of work</small></label>
-                        <select id="type_of_work" class="form-select form-select-sm" aria-label=".form-work-select">
-                            <option selected disabled>What type of work do you require?</option>
-                            <option value="1">Frontend Development</option>
-                            <option value="2">Backend Development</option>
-                            <option value="3">Project Analysis</option>
-                        </select>
-
-                    </div>
-
-                    <div class="col mb-3">
-
-                        <label for="formDiscountInput" class="form-label"><small>Discount Code</small></label>
-                        <input type="text" class="form-control form-control-sm" id="formDiscountInput"
-                            placeholder="Type your discount code here...">
-
-                    </div>
-
-
-
-                </div>
-
-                <div class="row mx-2 mx-md-5 px-2 px-md-5">
-                    
-                    <div class=" col-12 mb-3">
-
-                    <label for="FormMessage" class="form-label"><small>Message</small></label>
-                    <textarea id="FormMessage" class="form-control form-control-sm" rows="3"
-                        placeholder="Type your message here..."></textarea>
-                </div>
-
-                <div class="col-12 mb-3 text-center">
-                    <button type="button" onclick="PrintPrice()" class="btn btn-warning">Send</button>
-                </div>
-
-                <div class="col-12 mb-3">
-                    <p class="fw-semibold fs-5">Il prezzo finale è di: 153.75</p>
-                </div>
-
+                        <div class="col-12 mb-3">
+                            <p id="price_output" class="fw-semibold fs-5">Il prezzo finale è di: </p>
+                        </div>
+                </form>
             </div>
         </div>
     </div>
