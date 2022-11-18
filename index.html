@@ -128,6 +128,7 @@
             <div class="col 12 col-lg-10 bg-info p-0">
                 <p class="fw-semibold fs-4 text-center mt-3">WANT AN OFFER?</p>
                 <div class="row row-cols-1 row-cols-sm-2 mx-2 mx-md-5 px-2 px-md-5">
+                    
                     <div class="col mb-3">
 
                         <label for="formFirstNameInput" class="form-label"><small>First name</small></label>
@@ -163,7 +164,7 @@
                     <div class="col mb-3">
 
                         <label class="form-label"><small>Type of work</small></label>
-                        <select class="form-select form-select-sm" aria-label=".form-work-select">
+                        <select id="type_of_work" class="form-select form-select-sm" aria-label=".form-work-select">
                             <option selected disabled>What type of work do you require?</option>
                             <option value="1">Frontend Development</option>
                             <option value="2">Backed Development</option>
@@ -189,12 +190,12 @@
                     <div class=" col-12 mb-3">
 
                     <label for="FormMessage" class="form-label"><small>Message</small></label>
-                    <textarea class="form-control form-control-sm" id="FormMessage" rows="3"
+                    <textarea id="FormMessage" class="form-control form-control-sm" rows="3"
                         placeholder="Type your message here..."></textarea>
                 </div>
 
                 <div class="col-12 mb-3 text-center">
-                    <button type="button" class="btn btn-warning">Send</button>
+                    <button type="button" onclick="PrintPrice()" class="btn btn-warning">Send</button>
                 </div>
 
                 <div class="col-12 mb-3">
