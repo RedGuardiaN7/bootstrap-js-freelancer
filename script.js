@@ -80,14 +80,16 @@ function discount(price) {
     let input = document.getElementById("formDiscountInput").value;
 
     // Si trasforma l'input dell'utente in un codice in maiuscolo per verificare se il codice inserito è presente tra quelli accettati (i quali sono in maiuscolo)
-    
+
     input = input.toUpperCase();
 
-    if (discount_codes.includes(input)) {                       //Se il codice inserito dall'utente è presente tra quelli accettati, viene applicato il 25% di sconto
+    if (discount_codes.includes(input)) {                                   //Se il codice inserito dall'utente è presente tra quelli accettati, viene applicato il 25% di sconto
         console.log("Codice sconto applicato! (-25%)");
-        return price - 0.25 * price;
+        document.getElementById("formDiscountInput").style.color = "black"; //Per via del bonus, nel caso in cui l'utente inserisca prima un codice sbagliato, e poi uno accettato
+        return price - 0.25 * price;                                        //dovrà essere di nuovo scritto in nero (al posto di rimanere rosso per l'errore)
     } else {
         console.log("Codice sconto non inserito/invalido.");
-        return price;                                           //Altrimenti, non applicando alcun sconto, il prezzo finale equivale al prezzo iniziale
+        document.getElementById("formDiscountInput").style.color = "red";   //BONUS: Se il codice inserito non è valido, il codice diverrà rosso
+        return price;                                                       //Altrimenti, non applicando alcun sconto, il prezzo finale equivale al prezzo iniziale
     }
 }
