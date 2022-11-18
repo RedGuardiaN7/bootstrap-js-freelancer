@@ -19,9 +19,21 @@ function PrintPrice() {
 
     hours = hours.replace(",", ".");
 
+    //Controllo input dell'utente, nel caso in cui il valore inserito non sia un numero, o sia minore di 1, viene dato errore
+
+    if (isNaN(hours) || hours < 1) {
+        console.error("Valore delle ore invalido!");
+    }
+
     //Ora è possibile procedere con l'approssimazione (fino all'unità)
 
     hours = Math.round(hours);
+
+    //Grazie alla funzione first_price si ottiene il primo prezzo (senza sconti) in base alle ore e al tipo di lavoro richiesto
+
+    console.log(first_price (hours));
+
+   
 
 
 }
@@ -37,5 +49,11 @@ function first_price (hrs) {
 
     let type_of_work = document.getElementById("type_of_work").value
 
-    
+    if (type_of_work == 1) {
+        return 15.30 * hrs;
+    } else if (type_of_work == 2) {
+        return 20.50 * hrs;
+    } else if (type_of_work == 3) {
+        return 33.60 * hrs;
+    }
 }
