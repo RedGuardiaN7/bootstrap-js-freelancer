@@ -6,6 +6,43 @@
                 Se poi l’utente inserisce un codice promozionale tra i seguenti YHDNU32, JANJC63, PWKCN25, SJDPO96, POCIE24, fate in modo che l’utente abbia diritto ad uno sconto del 25% sul prezzo finale.
                 Se il codice inserito non è valido, informate l’utente che il codice è sbagliato e calcolate il prezzo finale senza applicare sconti. */
 
+//SUPER-BONUS: Creare una struttura dati adeguata per contenere tutte le informazioni relative ai progetti presenti nella sezione “Portfolio”. Rimuovere quindi le card dal markup nel file html e stamparle in pagina dinamicamente tramite l’utilizzo di JavaScript.
+
+//Creazione dell'array contenente tutte le informazioni dei siti del portfolio
+
+let projects = [
+    {
+        name: "Cabin Website",
+        picture: "img/portfolio/cabin.png",
+    },
+    {
+        name: "Cake Website",
+        picture: "img/portfolio/cake.png",
+    },
+    {
+        name: "Circus Website",
+        picture: "img/portfolio/circus.png",
+    },
+    {
+        name: "Game Website",
+        picture: "img/portfolio/game.png",
+    },
+    {
+        name: "Safe Website",
+        picture: "img/portfolio/safe.png",
+    },
+    {
+        name: "Submarine Website",
+        picture: "img/portfolio/submarine.png",
+    },
+]
+
+//Stampa dei siti del portfolio grazie alla funzione project_cards nell'HTML
+
+for (let i = 0; i < projects.length; i++) {
+    project_cards(projects[i]);
+}
+
 //Creazione funzione principale che, attivata al click del bottone apposito, calcola il prezzo della commissione, con eventuali deduzioni ad esso per via dei codici sconto
 
 function submitForm(event) {
@@ -98,7 +135,7 @@ function discount(price) {
 
             return price - 0.25 * price;
 
-        //Altrimenti, non applicando alcun sconto, il prezzo finale equivale al prezzo iniziale  
+            //Altrimenti, non applicando alcun sconto, il prezzo finale equivale al prezzo iniziale  
 
         } if (i == discount_codes.length) {
             console.log("Codice sconto non inserito/invalido.");
@@ -106,4 +143,26 @@ function discount(price) {
             return price;
         }
     }
+}
+
+//SUPER-BONUS: Creazione della funzione che permette di stampare ogni progetto all'interno dell'HTML sotto forma di card (bootstrap)
+
+function project_cards(project) {
+
+    document.getElementById("project-container").innerHTML += `
+    
+    <div class="col">
+    <div class="card border-light p-0 m-0">
+        <img src="${project.picture}" alt="Graphic drawing">
+        <div class="card-body text-center">
+            <p class="fs-5 fw-semibold">${project.name}</p>
+
+            <button type="button" class="btn btn-info">Preview</button>
+
+            <button type="button" class="btn btn-outline-info">Visit site</button>
+        </div>
+    </div>
+    </div>
+
+    `
 }
